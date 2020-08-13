@@ -1,0 +1,25 @@
+.container {
+	max-width: 450px;
+
+	&--padd {
+		padding: 0;
+	}
+}
+
+/* TEXT ALIGN */
+
+.t-left {
+    text-align: left;
+}
+
+.t-center {
+    text-align: center;
+}
+
+.t-right {
+    text-align: right;
+}
+
+.c-primary {
+	color: var(--c-primary);
+}

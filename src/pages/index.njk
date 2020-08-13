@@ -1,0 +1,39 @@
+{% extends "layout.tmpl.njk" %}
+
+{% block content %}
+
+	<div class="container container--padd">
+		<div class="ba-upload">
+			<div class="ba-upload__banner">
+				<img src="./img/banner-min.jpg" alt="BackStageArt">
+			</div>
+			<div class="ba-upload__body">
+				<form action="#">
+					<div class="ba-upload__head">
+						<div class="ba-order-info">
+							<span class="ba-order-info__title">Номер заказа:</span>
+							<span class="ba-order-info__number">1892823</span>
+						</div>
+						<div class="ba-btn ba-btn--yellow">Загрузить фото</div>
+					</div>
+
+					<div class="ba-upload__comment">
+						<textarea name="comment" rows="4" placeholder="Ваш комментарий"></textarea>
+						<button class="ba-btn ba-btn--gray ba-btn--full" type="submit">Отправить</button>
+					</div>
+					<div class="ba-upload__footer">
+						<div class="ba-upload__agree">
+							<input type="checkbox" id="ba-upload-agree">
+							<label class="ba-checkbox" for="ba-upload-agree"></label>
+							<div>
+								Я согласен с условиями <br> <a href="#">Политики конфиденциальности</a> <br> и <a href="#">Публичной офертой</a>
+							</div>
+						</div>
+						<span class="ba-upload__powered">powered by<br>Backstage Art</span>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

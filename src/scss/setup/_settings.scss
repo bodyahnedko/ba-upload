@@ -1,0 +1,81 @@
+/* ------------------------------------------- */
+/*                 SETTINGS                    */
+/* ------------------------------------------- */
+
+// COLORS
+$color-main: var(--c-violet);
+$color-alter: var(--c-yellow);
+
+// MAIN
+$border-radius-main: 6px;
+// $border-color-main: $c-blue-light;
+$box-shadow-size: 30px;
+
+
+// CONTENT FONT
+$content-font-family: $f-ibm;
+$content-txt-size: 14px;
+$content-txt-sm-size: 14px;
+$content-font-weight: 400;
+$content-line-height: 1.25;
+$content-txt-color: var(--c-dark);
+
+// HEADINGS FONT
+$headings-font-weight: 600;
+$headings-txt-color: var(--c-blue-dark);
+// $headings-line-height: 1.2;
+$heading-font-style: normal;
+$heading-font-family: $f-ibm;
+
+$h1-txt-size: 44px;
+$h1-mob-txt-size: 35px;
+
+$h2-txt-size: 36px;
+$h2-mob-txt-size: 30px;
+
+$h3-txt-size: 28px;
+$h3-mob-txt-size: 24px;
+
+$h4-txt-size: 24px;
+$h4-mob-txt-size: 20px;
+
+$h5-txt-size: 18px;
+$h5-mob-txt-size: 18px;
+
+$h6-txt-size: 16px;
+
+// LINKS
+$link-color: $color-main;
+$link-hover-color: $color-alter;
+
+// BUTTONS
+$button-font-size: 16px;
+$button-font-weight: 600;
+$button-line-height: 1.4;
+
+// HEADER
+$header-bg-color: $color-main;
+$header-link-color: var(--c-white);
+
+// FORM
+$select-height: 52px;
+$form-font-family: $f-ibm;
+$form-font-size: 14px;
+$form-font-weight: 500;
+$form-line-height: 26px;
+$form-txt-color: var(--c-dark);
+$form-plh-color: var(--c-grey);
+$form-border-color: transparent;
+$form-border-radius: var(--radius-sm);
+$form-border-color-active: transparent;
+$form-bg-color: var(--c-light);
+$form-bg-color-active: var(--c-light);
+$form-box-shadow: none;
+$form-box-shadow-active: 0px 2px 5px 1px rgba(var(--ca-violet), 0.3);
+
+// FOOTER
+// $footer-bg-color: $c-grey-flow;
+$footer-txt-size: 16px;
+$footer-txt-headings-color: var(--c-white);
+// $footer-txt-color: $c-blue-cloudly;
+

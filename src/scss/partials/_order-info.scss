@@ -1,0 +1,21 @@
+.ba-order-info {
+
+	&__title,
+	&__number {
+		display: block;
+		text-align: center;
+	}
+
+	&__title {
+		font-weight: 300;
+		font-size: 12px;
+		color: var(--c-grey-2);
+		margin-bottom: 5px;
+	}
+
+	&__number {
+		padding: 1px 5px;
+		background-color: var(--c-light3);
+		border-radius: var(--radius-sm);
+	}
+}

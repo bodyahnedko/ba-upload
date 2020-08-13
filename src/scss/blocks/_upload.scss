@@ -1,0 +1,64 @@
+.ba-upload {
+
+	&__banner {
+
+		img {
+			width: 100%;
+			object-fit: contain;
+		}
+	}
+
+	&__body {
+		padding: 30px 20px;
+	}
+
+	&__head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	&__comment {
+		margin-top: 30px;
+		
+		textarea {
+			height: 80px;
+			margin-bottom: 10px;
+		}
+	}
+
+	&__footer {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-weight: 300;
+		font-size: 12px;
+		color: var(--c-black);
+		margin-top: 20px;
+	}
+
+	&__agree {
+		display: flex;
+		
+		label {
+			width: 20px;
+			height: 20px;
+			margin-right: 8px;
+		}
+
+		a {
+			text-decoration: underline;
+			color: inherit;
+
+			&:hover {
+				color: var(--c-violet);
+			}
+		}
+
+	}
+
+	&__powered {
+		color: var(--c-grey);
+		font-size: 11px;
+	}
+}

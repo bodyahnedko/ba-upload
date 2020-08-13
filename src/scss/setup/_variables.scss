@@ -1,0 +1,90 @@
+/* ------------------------------------------- */
+/*              	VARIABLES      		       */
+/* ------------------------------------------- */
+
+// FONTS
+$f-ibm: 'IBM Plex Sans', serif;
+
+:root {
+	--c-white: #ffffff;
+	--ca-white: 255, 255, 255;
+
+	--c-light: #efefef;
+	--c-light2: #fafafa;
+	--c-light3: #e0e0e0;
+	--ca-light2: 250, 250, 250;
+
+	--c-grey: #bdbdbd;
+	--c-grey-d: #b4b3b3;
+	--c-grey-2: #828282;
+
+	--c-black: #000;
+	--ca-black: 0, 0, 0;
+	--c-dark: #101820;
+	--ca-dark: 33, 33, 33;
+
+	--c-violet-d: #582c83;
+	--c-violet: #7943d2;
+	--ca-violet: 121, 67, 210;
+	--c-blue: #4a47c2;
+	--c-yellow: #ffb600;
+	--ca-yellow: 255, 182, 0;
+	--c-yellow-d: #eeab00;
+	--c-green: #7bc760;
+	--c-orange: #f4633a;
+
+	--radius-sm: 4px;
+	--radius-md: 10px;
+
+	--aside-index: 10;
+	--popup-index: 100;
+}
+
+// MOBILE MENU BREAKPOINTS
+$bp-mob-menu: 1025px;
+
+// Z-INDEX
+$z-index-header: 900;
+
+//
+//	BOOTSTRAP
+//
+
+// GRID
+$enable-grid-classes: true !default;
+
+// Grid breakpoints
+$grid-breakpoints: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$grid-breakpoints: map-merge(
+	(
+		xs: 0,
+		sm: 576px,
+		md: 768px,
+		lg: 992px,
+		xl: 1200px,
+		xxl: 1600px,
+	),
+	$grid-breakpoints
+);
+
+@include _assert-ascending($grid-breakpoints, '$grid-breakpoints');
+@include _assert-starts-at-zero($grid-breakpoints);
+
+// Grid containers
+$container-max-widths: () !default;
+$container-max-widths: map-merge(
+	(
+		sm: 540px,
+		md: 720px,
+		lg: 960px,
+		xl: 1140px,
+	),
+	$container-max-widths
+);
+
+@include _assert-ascending($container-max-widths, '$container-max-widths');
+
+// Grid columns
+$grid-columns: 12 !default;
+$grid-gutter-width: 30px !default;
