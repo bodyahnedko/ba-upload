@@ -28,6 +28,13 @@
 	&:disabled {
 		cursor: not-allowed;
 		opacity: 0.8;
+		background-color: var(--c-grey);
+		color: var(--c-white);
+
+		&:hover {
+			background-color: var(--c-grey-d);
+			color: var(--c-white);
+		}
 	}
 
 	&--sm {
@@ -59,6 +66,16 @@
 
 		&:hover {
 			background-color: var(--c-grey-d);
+			color: var(--c-white);
+		}
+	}
+	
+	&--green {
+		background-color: var(--c-green);
+		color: var(--c-white);
+
+		&:hover {
+			background-color: var(--c-green-d);
 			color: var(--c-white);
 		}
 	}

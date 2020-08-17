@@ -61,4 +61,16 @@
 		color: var(--c-grey);
 		font-size: 11px;
 	}
+
+	&__message {
+		padding: 0 20px;
+		
+		p {
+			font-size: 20px;
+			text-align: center;
+			margin-top: 20px;
+			color: var(--c-orange-d);
+			font-weight: 600;
+		}
+	}
 }

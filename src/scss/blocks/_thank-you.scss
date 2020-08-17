@@ -1,0 +1,44 @@
+.ba-thank-you {
+	padding: 60px 20px;
+
+	&__title {
+		font-size: 20px;
+		color: var(--c-violet);
+	}
+
+	&__descr {
+		font-size: 14px;
+		font-weight: 300;
+		color: rgba(var(--ca-black), 0.7);
+	}
+
+	&__img {
+		margin-top: 20px;
+	}
+
+	&__socials-title {
+		color: var(--c-violet);
+		margin-top: 40px;
+	}
+
+	&__socials {
+		display: flex;
+		justify-content: space-between;
+		margin-top: 20px;
+
+		a {
+			display: block;
+
+			&:hover {
+
+				svg path {
+					fill: var(--c-violet);
+				}
+			}
+
+			svg path {
+				transition: fill 200ms ease;
+			}
+		}
+	}
+}
