@@ -88,31 +88,30 @@ function uploadForm() {
 				autoQueue: false,
 				previewsContainer: '#previews',
 				clickable: '.js-upload-btn',
-				uploadMultiple: true
+				uploadMultiple: true,
 			}
 		);
 
-		myDropzone.on('sendingmultiple', function (file, xhr, formData) {
-			formData.append('userName', comment.value);
-			console.log(formData);
+		myDropzone.on('successmultiple', () => {
+			const url = window.location.href + '/thank-you.html';
+			window.location = url;
 		});
 
 		myDropzone.on('addedfile', () => {
 			filesAdded = true;
 			submitBtn.disabled = false;
 		});
-		
+
 		myDropzone.on('processingmultiple', () => {
 			const preloader = form.querySelector('.js-preloader');
 
-			if(preloader) {
+			if (preloader) {
 				preloader.classList.remove('d-none');
 			}
 		});
 
 		myDropzone.on('error', (event) => {
-
-			if(!wasError) {
+			if (!wasError) {
 				const errorBox = document.querySelector('.js-message');
 
 				if (errorBox) {
@@ -123,11 +122,6 @@ function uploadForm() {
 			}
 
 			wasError = true;
-		});
-
-		myDropzone.on('successmultiple', () => {
-			const url = window.location.href + '/thank-you.html';
-			window.location = url;
 		});
 
 		myDropzone.on('removedfile', () => {
@@ -157,9 +151,3 @@ document.addEventListener('DOMContentLoaded', () => {
 	uploadForm();
 	checkPolicy();
 });
-
-window.addEventListener('load', () => {});
-
-document.addEventListener('scroll', () => {});
-
-window.addEventListener('resize', () => {});
