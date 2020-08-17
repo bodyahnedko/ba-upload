@@ -66,7 +66,10 @@
                             </div>
                             <div class="ba-upload__comment">
                                 <textarea name="comment" class="js-comment" rows="4" minlength="10" placeholder="Ваш комментарий" required></textarea>
-                                <button class="ba-btn ba-btn--green ba-btn--full js-form-submit" type="submit" disabled>Отправить</button>
+                                <button class="ba-btn ba-btn--green ba-btn--full ba-btn--load js-form-submit" type="submit" disabled>
+                                    Отправить
+                                    <span class="js-preloader d-none"><img src="./img/loader.jpg" alt=""></span>
+                                </button>
                             </div>
                             <div class="ba-upload__footer">
                                 <div class="ba-upload__agree">

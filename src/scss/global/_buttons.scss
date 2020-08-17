@@ -79,4 +79,11 @@
 			color: var(--c-white);
 		}
 	}
+
+	&--load {
+		img {
+			width: 20px;
+			margin-left: 10px;
+		}
+	}
 }

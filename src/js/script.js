@@ -88,10 +88,11 @@ function uploadForm() {
 				autoQueue: false,
 				previewsContainer: '#previews',
 				clickable: '.js-upload-btn',
+				uploadMultiple: true
 			}
 		);
 
-		myDropzone.on('sending', function (file, xhr, formData) {
+		myDropzone.on('sendingmultiple', function (file, xhr, formData) {
 			formData.append('userName', comment.value);
 			console.log(formData);
 		});
@@ -99,6 +100,14 @@ function uploadForm() {
 		myDropzone.on('addedfile', () => {
 			filesAdded = true;
 			submitBtn.disabled = false;
+		});
+		
+		myDropzone.on('processingmultiple', () => {
+			const preloader = form.querySelector('.js-preloader');
+
+			if(preloader) {
+				preloader.classList.remove('d-none');
+			}
 		});
 
 		myDropzone.on('error', (event) => {
@@ -116,7 +125,7 @@ function uploadForm() {
 			wasError = true;
 		});
 
-		myDropzone.on('success', () => {
+		myDropzone.on('successmultiple', () => {
 			const url = window.location.href + '/thank-you.html';
 			window.location = url;
 		});
