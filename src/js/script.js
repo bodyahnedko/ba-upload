@@ -46,6 +46,12 @@ function popupEvents() {
 	}
 }
 
+if (comment) {
+	comment.addEventListener('focus', (e) => {
+		e.target.classList.add('open');
+	});
+}
+
 function checkPolicy() {
 	let checked = true;
 

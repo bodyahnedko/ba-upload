@@ -58,6 +58,10 @@
 		overflow: hidden;
 		overflow-y: auto;
 		height: calc(100% - 70px);
+
+		h5 {
+			color: var(--c-violet);
+		}
 	}
 
 	&__close {
@@ -67,7 +71,7 @@
 		background-color: var(--c-orange);
 		border-top-left-radius: 20px;
 		border-bottom-left-radius: 20px;
-		padding: 8px 15px 8px 8px;
+		padding: 5px 15px 5px 8px;
 		z-index: 2;
 		line-height: 1;
 		display: flex;
