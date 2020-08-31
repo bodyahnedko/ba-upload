@@ -7,6 +7,9 @@ const checkbox = document.getElementById('ba-upload-agree');
 let filesAdded = false;
 let wasError = false;
 
+/**
+ * Popup
+ */
 function popupEvents() {
 	const btns = document.querySelectorAll('.js-popup-open');
 	const popups = document.querySelectorAll('.js-popup');
@@ -46,12 +49,18 @@ function popupEvents() {
 	}
 }
 
+/**
+ * Open comment field on focus
+ */
 if (comment) {
 	comment.addEventListener('focus', (e) => {
 		e.target.classList.add('open');
 	});
 }
 
+/**
+ * Check privacy checkbox enabled/disabled
+ */
 function checkPolicy() {
 	let checked = true;
 
@@ -70,6 +79,9 @@ function checkPolicy() {
 	return checked;
 }
 
+/**
+ * Form functinality
+ */
 function uploadForm() {
 	if (form) {
 		const previewNode = document.querySelector('#template');
@@ -86,6 +98,7 @@ function uploadForm() {
 		const myDropzone = new Dropzone(
 			document.querySelector('.js-upload-form'),
 			{
+				// url: 'http://backstage/ba-upload/dist/upload.php',
 				thumbnailWidth: 80,
 				thumbnailHeight: 80,
 				parallelUploads: 20,
