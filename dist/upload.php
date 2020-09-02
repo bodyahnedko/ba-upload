@@ -9,14 +9,20 @@
 	
 	if (!empty($_FILES)) {
 		
-		foreach($_FILES['file']['tmp_name'] as $key => $value) {
-			$tempFile = $_FILES['file']['tmp_name'][$key];
-			$targetFile =  $storeFolder. $_FILES['file']['name'][$key];
-			move_uploaded_file($tempFile,$targetFile);
-	  }
+	// 	foreach($_FILES['file']['tmp_name'] as $key => $value) {
+	// 		$tempFile = $_FILES['file']['tmp_name'][$key];
+	// 		$targetFile =  $storeFolder. $_FILES['file']['name'][$key];
+	// 		move_uploaded_file($tempFile,$targetFile);
+	//   }
+		$tempFile = $_FILES['file']['tmp_name'];          //3             
+			
+		$targetPath = dirname( __FILE__ ) . $ds. $storeFolder . $ds;  //4
+		
+		$targetFile =  $targetPath. $_FILES['file']['name'];  //5
+
+		move_uploaded_file($tempFile,$targetFile); //6
 	}
 
 	
 	echo json_encode('done');
 	exit();
-?> 

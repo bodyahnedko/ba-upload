@@ -107,11 +107,17 @@ function uploadForm() {
 				autoQueue: false,
 				previewsContainer: '#previews',
 				clickable: '.js-upload-btn',
-				uploadMultiple: true,
+				uploadMultiple: false,
+				
+				uploadprogress: function(file, progress, bytesSent) {
+					var progressElement = file.previewElement.querySelector("[data-dz-uploadprogress]");
+					progressElement.style.width = progress + "%";
+					file.previewElement.querySelector(".progress-text").textContent = Math.trunc(progress) + "%";
+				}
 			}
 		);
-
-		myDropzone.on('successmultiple', () => {
+		
+		myDropzone.on("queuecomplete", function(progress) {
 			const url = window.location.href + '/thank-you.html';
 			window.location = url;
 		});
@@ -121,13 +127,19 @@ function uploadForm() {
 			submitBtn.disabled = false;
 		});
 
-		myDropzone.on('processingmultiple', () => {
-			const preloader = form.querySelector('.js-preloader');
+		myDropzone.on("complete", function(file) {
+			file.previewElement.querySelector("[data-dz-size]").classList.remove('d-none');
+			file.previewElement.querySelector(".progress-text").classList.add('d-none');
+			file.previewElement.querySelector("[data-dz-remove]").disabled = true;
+		 });
 
-			if (preloader) {
-				preloader.classList.remove('d-none');
-			}
-		});
+		// myDropzone.on('processing', () => {
+		// 	const preloader = form.querySelector('.js-preloader');
+
+		// 	if (preloader) {
+		// 		preloader.classList.remove('d-none');
+		// 	}
+		// });
 
 		myDropzone.on('error', (event) => {
 			if (!wasError) {
