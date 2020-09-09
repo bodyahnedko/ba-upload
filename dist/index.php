@@ -49,8 +49,8 @@
                                     <div class="ba-upload-item__stat">
                                         <div class="ba-upload-item__stat-top">
                                             <span data-dz-name></span>
-                                            <span data-dz-size class="d-none"></span>
-                                            <span class="progress-text">0%</span>
+                                            <span data-dz-size></span>
+                                            <span class="progress-text d-none">0%</span>
                                         </div>
                                         <div class="ba-upload-item__progress progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                                             <span class="progress-bar progress-bar-success" data-dz-uploadprogress></span>
@@ -323,3 +323,5 @@
     <script src="./js/dropzone.min.js"></script>
     <script src="./js/script.js"></script>
 </body>
+
+</html>

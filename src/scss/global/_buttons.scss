@@ -43,6 +43,11 @@
 
 	&--file {
 		position: relative;
+		padding: 0 10px;
+
+		@media(max-width: 360px) {
+			min-width: auto;
+		}
 
 		input[type="file"] {
 			position: absolute;

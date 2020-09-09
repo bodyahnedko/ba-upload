@@ -64,6 +64,7 @@
 			display: block;
 			width: 0;
 			height: 4px;
+			transition: width .6s ease;
 		}
 	}
 
@@ -72,6 +73,18 @@
 		button {
 			display: flex;
 			align-items: center;
+
+			&:disabled {
+				opacity: 0.5;
+				cursor: not-allowed;
+
+				&:hover {
+
+					svg path {
+						fill: var(--c-orange);
+					}
+				}
+			}
 
 			&:hover {
 

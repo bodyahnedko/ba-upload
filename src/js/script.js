@@ -4,6 +4,8 @@ const uploadBox = form && form.querySelector('.js-upload-box');
 const comment = form && form.querySelector('.js-comment');
 const checkbox = document.getElementById('ba-upload-agree');
 
+const baseUrl = 'https://api.backart.com.ua:8443/bas/order/';
+
 let filesAdded = false;
 let wasError = false;
 
@@ -50,6 +52,24 @@ function popupEvents() {
 }
 
 /**
+ * Error message
+ */
+
+function errorMessage() {
+	if (!wasError) {
+		const errorBox = document.querySelector('.js-message');
+
+		if (errorBox) {
+			const html =
+				'<p>Щось пішло не так. Оновіть сторінку і спробуйте ще раз!</p>';
+			errorBox.insertAdjacentHTML('afterbegin', html);
+		}
+	}
+
+	wasError = true;
+}
+
+/**
  * Open comment field on focus
  */
 if (comment) {
@@ -57,6 +77,44 @@ if (comment) {
 		e.target.classList.add('open');
 	});
 }
+
+/**
+ * Get form ID
+ */
+// const key = '624699de-5a01-4df7-a25e-3ac27c5789c1';
+const key = location.href.split('art/')[1] || location.href.split('form/')[1] || location.href.split('photo/')[1];
+
+async function getFormID() {
+	try {
+		const resp = await fetch(
+			`${baseUrl}${key}`,
+			{
+				method: 'GET',
+			}
+		);
+		
+		if(resp.status === 500) {
+			errorMessage();
+			return res;
+		}
+
+		const res = await resp.text();
+		console.log('ID', res);
+
+		return res;
+	} catch (error) {
+		errorMessage();
+		console.log('error = ', error);
+	}
+}
+
+getFormID().then(data => {
+	const formID = document.querySelector('.js-form-id');
+	if(formID) {
+		formID.innerHTML = data
+	}
+});
+
 
 /**
  * Check privacy checkbox enabled/disabled
@@ -98,28 +156,34 @@ function uploadForm() {
 		const myDropzone = new Dropzone(
 			document.querySelector('.js-upload-form'),
 			{
-				// url: 'http://backstage/ba-upload/dist/upload.php',
+				url: `${baseUrl}${key}`,
 				thumbnailWidth: 80,
 				thumbnailHeight: 80,
-				parallelUploads: 20,
+				parallelUploads: 1,
 				acceptedFiles: 'image/*',
 				previewTemplate: previewTemplate,
 				autoQueue: false,
 				previewsContainer: '#previews',
 				clickable: '.js-upload-btn',
 				uploadMultiple: false,
-				
-				uploadprogress: function(file, progress, bytesSent) {
-					var progressElement = file.previewElement.querySelector("[data-dz-uploadprogress]");
-					progressElement.style.width = progress + "%";
-					file.previewElement.querySelector(".progress-text").textContent = Math.trunc(progress) + "%";
-				}
+
+				// uploadprogress: function(file, progress, bytesSent) {
+				// 	var progressElement = file.previewElement.querySelector("[data-dz-uploadprogress]");
+				// 	progressElement.style.width = progress + "%";
+				// 	file.previewElement.querySelector(".progress-text").textContent = Math.trunc(progress) + "%";
+				// }
 			}
 		);
-		
-		myDropzone.on("queuecomplete", function(progress) {
-			const url = window.location.href + '/thank-you.html';
-			window.location = url;
+
+		myDropzone.on('queuecomplete', function (progress) {
+			if (!wasError) {
+				const url = window.location.href.split(key)[0] + 'thank-you.html';
+				window.location = url;
+			}
+		});
+
+		myDropzone.on("sending", function(file, xhr, formData) { 
+			formData.append("files", file); 
 		});
 
 		myDropzone.on('addedfile', () => {
@@ -127,11 +191,13 @@ function uploadForm() {
 			submitBtn.disabled = false;
 		});
 
-		myDropzone.on("complete", function(file) {
-			file.previewElement.querySelector("[data-dz-size]").classList.remove('d-none');
-			file.previewElement.querySelector(".progress-text").classList.add('d-none');
-			file.previewElement.querySelector("[data-dz-remove]").disabled = true;
-		 });
+		myDropzone.on('complete', function (file) {
+			// file.previewElement.querySelector("[data-dz-size]").classList.remove('d-none');
+			// file.previewElement.querySelector(".progress-text").classList.add('d-none');
+			file.previewElement.querySelector(
+				'[data-dz-remove]'
+			).disabled = true;
+		});
 
 		// myDropzone.on('processing', () => {
 		// 	const preloader = form.querySelector('.js-preloader');
@@ -142,17 +208,8 @@ function uploadForm() {
 		// });
 
 		myDropzone.on('error', (event) => {
-			if (!wasError) {
-				const errorBox = document.querySelector('.js-message');
-
-				if (errorBox) {
-					const html =
-						'<p>Щось пішло не так. Оновіть сторінку і спробуйте ще раз!</p>';
-					errorBox.insertAdjacentHTML('afterbegin', html);
-				}
-			}
-
-			wasError = true;
+			console.log(event);
+			errorMessage();
 		});
 
 		myDropzone.on('removedfile', () => {
@@ -165,6 +222,14 @@ function uploadForm() {
 		if (form) {
 			form.addEventListener('submit', (event) => {
 				event.preventDefault();
+
+				const deleteBtns = form.querySelectorAll('.js-delete-upload');
+				if(deleteBtns && deleteBtns.length) {
+					deleteBtns.forEach(btn => {
+						btn.disabled = true
+						submitBtn.disabled = true;
+					});
+				}
 
 				myDropzone.enqueueFiles(
 					myDropzone.getFilesWithStatus(Dropzone.ADDED)

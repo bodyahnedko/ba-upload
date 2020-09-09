@@ -5,10 +5,10 @@
 		img {
 			width: 100%;
 			object-fit: cover;
-			height: 260px;
+			// height: 260px;
 
 			@include extra-small-size-max {
-				height: 200px;
+				// height: 200px;
 				object-position: top center;
 			}
 		}
