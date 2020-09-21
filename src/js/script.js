@@ -163,6 +163,7 @@ function uploadForm() {
 				acceptedFiles: 'image/*',
 				previewTemplate: previewTemplate,
 				autoQueue: false,
+				timeout: 0,
 				previewsContainer: '#previews',
 				clickable: '.js-upload-btn',
 				uploadMultiple: false,
