@@ -18,9 +18,14 @@ function popupEvents() {
 
 	if (btns && btns.length) {
 		btns.forEach((btn) => {
-			btn.addEventListener('click', (event) => {
+			btn.addEventListener('click', function(event) {
 				event.preventDefault();
 				const { id } = btn.dataset;
+				const parrentPoup = this.closest('.js-popup');
+				
+				if(parrentPoup) {
+					parrentPoup.classList.remove('open');
+				}
 
 				if (id) {
 					const target = document.getElementById(id);
@@ -60,8 +65,7 @@ function errorMessage() {
 		const errorBox = document.querySelector('.js-message');
 
 		if (errorBox) {
-			const html =
-				'<p>Щось пішло не так. Оновіть сторінку і спробуйте ще раз!</p>';
+			const html = '<p>Щось пішло не так. Оновіть сторінку і спробуйте ще раз!</p>';
 			errorBox.insertAdjacentHTML('afterbegin', html);
 		}
 	}
@@ -86,14 +90,11 @@ const key = location.href.split('art/')[1] || location.href.split('form/')[1] ||
 
 async function getFormID() {
 	try {
-		const resp = await fetch(
-			`${baseUrl}${key}`,
-			{
-				method: 'GET',
-			}
-		);
-		
-		if(resp.status === 500) {
+		const resp = await fetch(`${baseUrl}${key}`, {
+			method: 'GET',
+		});
+
+		if (resp.status === 500) {
 			errorMessage();
 			return res;
 		}
@@ -108,13 +109,12 @@ async function getFormID() {
 	}
 }
 
-getFormID().then(data => {
+getFormID().then((data) => {
 	const formID = document.querySelector('.js-form-id');
-	if(formID) {
-		formID.innerHTML = data
+	if (formID) {
+		formID.innerHTML = data;
 	}
 });
-
 
 /**
  * Check privacy checkbox enabled/disabled
@@ -153,28 +153,25 @@ function uploadForm() {
 			previewNode.parentNode.removeChild(previewNode);
 		}
 
-		const myDropzone = new Dropzone(
-			document.querySelector('.js-upload-form'),
-			{
-				url: `${baseUrl}${key}`,
-				thumbnailWidth: 80,
-				thumbnailHeight: 80,
-				parallelUploads: 1,
-				acceptedFiles: 'image/*',
-				previewTemplate: previewTemplate,
-				autoQueue: false,
-				timeout: 0,
-				previewsContainer: '#previews',
-				clickable: '.js-upload-btn',
-				uploadMultiple: false,
+		const myDropzone = new Dropzone(document.querySelector('.js-upload-form'), {
+			url: `${baseUrl}${key}`,
+			thumbnailWidth: 80,
+			thumbnailHeight: 80,
+			parallelUploads: 1,
+			acceptedFiles: 'image/*',
+			previewTemplate: previewTemplate,
+			autoQueue: false,
+			timeout: 0,
+			previewsContainer: '#previews',
+			clickable: '.js-upload-btn',
+			uploadMultiple: false,
 
-				// uploadprogress: function(file, progress, bytesSent) {
-				// 	var progressElement = file.previewElement.querySelector("[data-dz-uploadprogress]");
-				// 	progressElement.style.width = progress + "%";
-				// 	file.previewElement.querySelector(".progress-text").textContent = Math.trunc(progress) + "%";
-				// }
-			}
-		);
+			// uploadprogress: function(file, progress, bytesSent) {
+			// 	var progressElement = file.previewElement.querySelector("[data-dz-uploadprogress]");
+			// 	progressElement.style.width = progress + "%";
+			// 	file.previewElement.querySelector(".progress-text").textContent = Math.trunc(progress) + "%";
+			// }
+		});
 
 		myDropzone.on('queuecomplete', function (progress) {
 			if (!wasError) {
@@ -183,8 +180,8 @@ function uploadForm() {
 			}
 		});
 
-		myDropzone.on("sending", function(file, xhr, formData) { 
-			formData.append("files", file); 
+		myDropzone.on('sending', function (file, xhr, formData) {
+			formData.append('files', file);
 		});
 
 		myDropzone.on('addedfile', () => {
@@ -195,9 +192,7 @@ function uploadForm() {
 		myDropzone.on('complete', function (file) {
 			// file.previewElement.querySelector("[data-dz-size]").classList.remove('d-none');
 			// file.previewElement.querySelector(".progress-text").classList.add('d-none');
-			file.previewElement.querySelector(
-				'[data-dz-remove]'
-			).disabled = true;
+			file.previewElement.querySelector('[data-dz-remove]').disabled = true;
 		});
 
 		// myDropzone.on('processing', () => {
@@ -225,16 +220,14 @@ function uploadForm() {
 				event.preventDefault();
 
 				const deleteBtns = form.querySelectorAll('.js-delete-upload');
-				if(deleteBtns && deleteBtns.length) {
-					deleteBtns.forEach(btn => {
-						btn.disabled = true
+				if (deleteBtns && deleteBtns.length) {
+					deleteBtns.forEach((btn) => {
+						btn.disabled = true;
 						submitBtn.disabled = true;
 					});
 				}
 
-				myDropzone.enqueueFiles(
-					myDropzone.getFilesWithStatus(Dropzone.ADDED)
-				);
+				myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED));
 			});
 		}
 	}
